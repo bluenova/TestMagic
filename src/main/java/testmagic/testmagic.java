@@ -22,7 +22,7 @@ public class testmagic implements MagePlugin {
     }
 
     public void loadPlugin() {
-        manager.registerMagic("snowball", magicName, 1, 10, new snowballmagic(), MageEventType.INTERACT);
+        manager.registerMagic("snowball", magicName, 1, 10, new snowballmagic(), MageEventType.INTERACT, false);
         System.out.println("TestMagic Successfully Load!");
     }
 
