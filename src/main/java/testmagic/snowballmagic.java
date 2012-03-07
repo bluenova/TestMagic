@@ -1,11 +1,9 @@
 package testmagic;
 
 import bluenova.fairytailcraft.plugin.MagePluginEvent;
-import java.lang.annotation.Target;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -31,8 +29,8 @@ public class snowballmagic extends MagePluginEvent {
     }
 
     @Override
-    public void callEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
-             if (lastActiveItem == Material.AIR) {
+    public void callEntityHitByProjectilEvent(ProjectileHitEvent event) {
+                   if (lastActiveItem == Material.AIR) {
             Projectile proj = (Projectile) event.getEntity();
             Entity tar = proj.getNearbyEntities(1, 1, 1).get(0);
             if (tar instanceof LivingEntity) {
@@ -40,6 +38,5 @@ public class snowballmagic extends MagePluginEvent {
                 target.damage(2, proj.getShooter());
             }
         }
-    }
- 
+    }     
 }
