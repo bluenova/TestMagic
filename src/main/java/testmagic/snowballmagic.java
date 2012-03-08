@@ -6,6 +6,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Snowball;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -24,7 +25,7 @@ public class snowballmagic extends MagePluginEvent {
 
     @Override
     public void callPlayerInteractEvent(PlayerInteractEvent event) {
-        event.getPlayer().throwSnowball();
+        event.getPlayer().launchProjectile(Snowball.class);
         event.getPlayer().sendMessage("Mana decreesed!");
         lastActiveItem.put(event.getPlayer(), event.getItem());
     }
