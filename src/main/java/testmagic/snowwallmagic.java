@@ -5,6 +5,8 @@
 package testmagic;
 
 import bluenova.fairytailcraft.plugin.MagePluginEvent;
+import bluenova.fairytailcraft.plugin.MagePluginRegion;
+import java.util.List;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -90,117 +92,43 @@ public class snowwallmagic extends MagePluginEvent {
         //Generate Wall
         if (!isEdge) {
             if (dirrect == wallDirections.NORTH || dirrect == wallDirections.SOUTH) {
-                wallArr = new Location[]{
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() - 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() - 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() - 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() - 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() - 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() - 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() + 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() + 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() + 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() + 2)
-                };
+                MagePluginRegion regio = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() - 2), new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY()+2, loc.getBlockZ() + 2),  loc.getWorld());
+                wallArr = (Location[]) regio.getLocations().toArray();
             } else {
-                wallArr = new Location[]{
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 1, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 1, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 1, loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 2, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 2, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 2, loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 1, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 1, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 1, loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 2, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 2, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 2, loc.getBlockY() + 2, loc.getBlockZ())
-                };
+                MagePluginRegion regio = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX()-2, loc.getBlockY(), loc.getBlockZ()), new Location(loc.getWorld(), loc.getBlockX()+2, loc.getBlockY()+2, loc.getBlockZ()),  loc.getWorld());
+                wallArr = (Location[]) regio.getLocations().toArray();
             }
         } else {
             if (dirrect == wallDirections.NORTHEAST) {
-                wallArr = new Location[]{
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() + 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() + 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() + 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX() - 1, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 1, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 1, loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 2, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 2, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 2, loc.getBlockY() + 2, loc.getBlockZ())
-                };
+                MagePluginRegion regio = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), new Location(loc.getWorld(), loc.getBlockX()-2, loc.getBlockY()+2, loc.getBlockZ()),  loc.getWorld());
+                MagePluginRegion regio2 = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY()+2, loc.getBlockZ()+2),  loc.getWorld());
+                List<Location> locations = regio.getLocations();
+                List<Location> locations2 = regio2.getLocations();
+                locations.addAll(locations2);
+                wallArr = (Location[]) locations.toArray();
             } else if (dirrect == wallDirections.NORTHWEST) {
-                wallArr = new Location[]{
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() - 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() - 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() - 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() - 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() - 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() - 2),
-                    new Location(loc.getWorld(), loc.getBlockX() - 1, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 1, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 1, loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 2, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 2, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() - 2, loc.getBlockY() + 2, loc.getBlockZ())
-                };
+                MagePluginRegion regio = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), new Location(loc.getWorld(), loc.getBlockX()-2, loc.getBlockY()+2, loc.getBlockZ()),  loc.getWorld());
+                MagePluginRegion regio2 = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY()+2, loc.getBlockZ()-2),  loc.getWorld());
+                List<Location> locations = regio.getLocations();
+                List<Location> locations2 = regio2.getLocations();
+                locations.addAll(locations2);
+                wallArr = (Location[]) locations.toArray();
 
             } else if (dirrect == wallDirections.SOUTHWEST) {
-                wallArr = new Location[]{
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 1, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 1, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 1, loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 2, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 2, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 2, loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() + 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() + 2)
-                };
+                MagePluginRegion regio = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), new Location(loc.getWorld(), loc.getBlockX()+2, loc.getBlockY()+2, loc.getBlockZ()),  loc.getWorld());
+                MagePluginRegion regio2 = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY()+2, loc.getBlockZ()+2),  loc.getWorld());
+                List<Location> locations = regio.getLocations();
+                List<Location> locations2 = regio2.getLocations();
+                locations.addAll(locations2);
+                wallArr = (Location[]) locations.toArray();
 
             } else {
-                wallArr = new Location[]{
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 1, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 1, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 1, loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 2, loc.getBlockY(), loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 2, loc.getBlockY() + 1, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX() + 2, loc.getBlockY() + 2, loc.getBlockZ()),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() - 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() - 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() - 1),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ() - 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 1, loc.getBlockZ() - 2),
-                    new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY() + 2, loc.getBlockZ() - 2)
-                };
+                MagePluginRegion regio = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), new Location(loc.getWorld(), loc.getBlockX()+2, loc.getBlockY()+2, loc.getBlockZ()),  loc.getWorld());
+                MagePluginRegion regio2 = new MagePluginRegion(new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), new Location(loc.getWorld(), loc.getBlockX(), loc.getBlockY()+2, loc.getBlockZ()-2),  loc.getWorld());
+                List<Location> locations = regio.getLocations();
+                List<Location> locations2 = regio2.getLocations();
+                locations.addAll(locations2);
+                wallArr = (Location[]) locations.toArray();
             }
         }
         for(int i = 0; i < wallArr.length; i++) {
