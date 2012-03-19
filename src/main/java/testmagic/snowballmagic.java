@@ -24,7 +24,7 @@ public class snowballmagic extends MagePluginEvent {
     HashMap<Player, ItemStack> lastActiveItem = new HashMap<Player, ItemStack>();
 
     @Override
-    public boolean callPlayerInteractEvent(PlayerInteractEvent event) {
+    public boolean callPlayerInteractEvent(PlayerInteractEvent event, Integer level) {
         event.getPlayer().launchProjectile(Snowball.class);
         event.getPlayer().sendMessage("Mana decreesed!");
         lastActiveItem.put(event.getPlayer(), event.getItem());
@@ -32,7 +32,7 @@ public class snowballmagic extends MagePluginEvent {
     }
 
     @Override
-    public boolean callEntityHitByProjectilEvent(ProjectileHitEvent event) {
+    public boolean callEntityHitByProjectilEvent(ProjectileHitEvent event, Integer level) {
         if (event.getEntity().getShooter() instanceof Player) {
             if (lastActiveItem.get((Player)event.getEntity().getShooter()) == null) {
                 Projectile proj = (Projectile) event.getEntity();
