@@ -22,8 +22,8 @@ public class testmagic implements MagePlugin {
     }
 
     public void loadPlugin() {
-        manager.registerMagic("snowball", magicName, 1, 10, new snowballmagic(), MageEventType.INTERACT, false);
-        manager.registerMagic("snowwall", magicName, 1, 50, new snowwallmagic(), MageEventType.INTERACT, false);
+        manager.registerMagic("snowball", magicName, 1, 10, new snowballmagic(), MageEventType.INTERACT, false, new Long(3000));
+        manager.registerMagic("snowwall", magicName, 1, 50, new snowwallmagic(), MageEventType.INTERACT, false, new Long(6000));
         System.out.println("TestMagic Successfully Load!");
     }
 
